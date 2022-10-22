@@ -27,28 +27,29 @@
     {% include 'partials/menu.html' %}
 
     <!-- ##### Best Receipe Area Start ##### -->
-    <!-- ##### Best Receipe Area Start ##### -->
-<!-- ##### Best Receipe Area Start ##### -->
-<section class="best-receipe-area">
-    <div class="container">
-        <div class="row">
-            {% for chave, nome_da_receita in nome_das_receitas.items %}
-            <!-- Single Best Receipe Area -->
-            <div class="col-12 col-sm-16 col-lg-4">
-                <div class="single-best-receipe-area mb-30">
-                    <img src="{% static 'img/bg-img/foto_receita.png' %}"></img>
-                    <div class="receipe-content">
-                        <a href="receita.html">
-                            <h5>{{ nome_da_receita }}</h5>
-                        </a>
+    <section class="best-receipe-area">
+        <div class="container">
+            <div class="row">
+                {% if receitas %}
+                {% for receita in receitas %}
+                <!-- Single Best Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-best-receipe-area mb-30">
+                        <img src="{% static 'img/bg-img/foto_receita.png' %}" alt="">
+                        <div class="receipe-content">
+                            <a href="{% url 'receita' receita.id %}">
+                                <h5>{{ receita.nome_receita }}</h5>
+                            </a>
+                        </div>
                     </div>
                 </div>
+                {% endfor %}
+                {% else %}
+                {% endif %}
             </div>
-            {% endfor %}
         </div>
-    </div>
-</section>
+    </section>
+    <!-- ##### Best Receipe Area End ##### -->
 
     {% include 'partials/footer.html' %}
 {% endblock %}
-    
